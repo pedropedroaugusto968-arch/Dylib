@@ -1,0 +1,23 @@
+name: Build Nexus Dylib
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Theos
+        uses: pypush/actions-theos-v2@v1
+
+      - name: Build Tweak
+        run: |
+          export THEOS_DEVICE_IP=localhost
+          make package
+          
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: NexusVIP-Dylib
+          path: packages/*.deb
