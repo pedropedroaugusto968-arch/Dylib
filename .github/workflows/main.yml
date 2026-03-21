@@ -1,0 +1,25 @@
+name: Build_Nexus
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install_Theos
+        run: |
+          sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
+          echo "THEOS=/opt/theos" >> $GITHUB_ENV
+
+      - name: Build_Dylib
+        run: |
+          export THEOS=/opt/theos
+          make package FINALPACKAGE=1
+          
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: Nexus_Dylib
+          path: packages/*.deb
