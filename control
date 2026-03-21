@@ -1,0 +1,9 @@
+Package: com.nexus.store.hspescoco
+Name: Nexus VIP - HS Pescoço
+Depends: mobilesubstrate
+Version: 4.0
+Architecture: iphoneos-arm
+Description: Auto-Inject HS Pescoço para Free Fire. Criado por @eoo_gomes3
+Maintainer: Nexus Store
+Author: @eoo_gomes3
+Section: Tweaks
